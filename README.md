@@ -4,4 +4,4 @@
 
 Feito Por Andrey M. Gois e Breno Alcides P. de Medeiros
 
-> Usando o Material Design Theme e Material Design Color <
+> Usando o Material Design Theme e Material Design Color 
