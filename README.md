@@ -1,6 +1,6 @@
 # MusicPlayer
-##Um tocador de Musica em C#
+## Um tocador de Musica em C#
 
-##Feito Por Andrey M. Gois e Breno Alcides P. de Medeiros
+## Feito Por Andrey M. Gois e Breno Alcides P. de Medeiros
 
-##Usando o Material Design Theme e Material Design Color
+## Usando o Material Design Theme e Material Design Color
