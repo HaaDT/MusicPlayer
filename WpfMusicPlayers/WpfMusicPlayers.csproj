@@ -74,6 +74,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="cs\musica.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -106,7 +107,18 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="imagens\icons\iconDp.jpg" />
+    <Resource Include="imagens\icons\iconEsoc.jpg" />
+    <Resource Include="imagens\icons\iconMl.png" />
+    <Resource Include="imagens\icons\iconMs.jpeg" />
+    <Resource Include="imagens\icons\iconTrodt.jpg" />
+    <Content Include="musicas\dp.mp3" />
+    <Content Include="musicas\esoc.mp3" />
+    <Content Include="musicas\ml.mp3" />
+    <Content Include="musicas\ms.mp3" />
+    <Content Include="musicas\trodt.mp3" />
+  </ItemGroup>
   <ItemGroup>
     <Resource Include="imagens\teste.png" />
   </ItemGroup>
