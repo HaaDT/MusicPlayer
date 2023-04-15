@@ -13,43 +13,53 @@ namespace WpfMusicPlayers
 {
     public partial class MainWindow : Window
     {
+        static List<musica> musicasList = new List<musica>();
 
+        bool tocandoMusica = false;
+        int musicaAtual = 0;
 
-        bool ativo = false;
-        static List<musica> osts = new List<musica>();
-        int numero = 0;
-        WaveOutEvent player = new WaveOutEvent();
+        WaveOutEvent player = new WaveOutEvent(); //Objeto que toca as músicas
 
-
-
-        //adicionar ost novas
-        void adicionar(string a, string b, string c, string d)
+        //Adicionar as Músicas a lista
+        void AdicionarMusica(string caminho, string imagem, string nome, string artista)
         {
-            musica ost = new musica();
-            ost.path = a;
-            ost.icon = b;
-            ost.nome = c;
-            ost.artista = d;
-            osts.Add(ost);
+            musica musica = new musica();
+
+            //Define as informações do objeto música
+            musica.caminho = caminho;
+            musica.imagem = imagem;
+            musica.nome = nome;
+            musica.artista = artista;
+
+            musicasList.Add(musica);
         }
 
-        void musica()
+        void TocarMusica()
         {
             player.Stop();
-            imImagemTocando.Source = new BitmapImage(new Uri(@"/Imagens/" + osts[numero - 1].icon, UriKind.Relative));
-            tbArtistaTocando.Text = osts[numero - 1].artista;
-            tbMusicaTocando.Text = osts[numero - 1].nome;
-            player.Init(new AudioFileReader(Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\..\")) + new Uri(@"musicas/" + osts[numero - 1].path, UriKind.Relative).ToString()));
+
+            //Mostra as informações da música atual na tela
+            imImagemTocando.Source = new BitmapImage(new Uri(@"/Imagens/" + musicasList[musicaAtual - 1].imagem, UriKind.Relative));
+            tbArtistaTocando.Text = musicasList[musicaAtual - 1].artista;
+            tbMusicaTocando.Text = musicasList[musicaAtual - 1].nome;
+            player.Init(new AudioFileReader(Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\..\")) + new Uri(@"musicas/" + musicasList[musicaAtual - 1].caminho, UriKind.Relative).ToString()));
+            
+            //Configura o botão de Pausar e Tocar toda vez que uma música nova toca
+            tocandoMusica = true;
+            iconPausarETocar.Kind = PackIconKind.Pause;
+
             player.Play();
         }
 
         public MainWindow()
         {
-            adicionar("dp.mp3", "iconDp.jpg", "Departure", "Masatoshi Ono");
-            adicionar("esoc.mp3", "iconEsoc.jpg", "Eu Sou o Caos", "Júlio Victor");
-            adicionar("ml.mp3", "iconMl.png", "Megalovania", "Toby Fox");
-            adicionar("ms.mp3", "iconMs.jpeg", "Melissa", "Porno Graffitti");
-            adicionar("uc.mp3", "iconUc.jpg", "Universal Collapse", "DM DOKURO");
+            //Define as 5 músicas
+            AdicionarMusica("dp.mp3", "iconDp.jpg", "Departure", "Masatoshi Ono");
+            AdicionarMusica("esoc.mp3", "iconEsoc.jpg", "Eu Sou o Caos", "Júlio Victor");
+            AdicionarMusica("ml.mp3", "iconMl.png", "Megalovania", "Toby Fox");
+            AdicionarMusica("ms.mp3", "iconMs.jpeg", "Melissa", "Porno Graffitti");
+            AdicionarMusica("uc.mp3", "iconUc.jpg", "Universal Collapse", "DM DOKURO");
+
             InitializeComponent();
         }
 
@@ -59,97 +69,97 @@ namespace WpfMusicPlayers
             this.Close();
         }
 
-
         //Botão de voltar uma Música
         private void btVoltarMusica_Click(object sender, RoutedEventArgs e)
         {
-            if (numero > 1)
+            if (musicaAtual > 1)
             {
-                numero--;
-                musica();
+                musicaAtual--;
+                TocarMusica();
             }
             else
             {
-                numero = 5;
-                musica();
+                musicaAtual = 5;
+                TocarMusica();
             }
         }
 
         //Botão de avançar uma Música
         private void btAvancarMusica_Click(object sender, RoutedEventArgs e)
         {
-            if (numero < 5)
+            if (musicaAtual < 5)
             {
-                numero++;
-                musica();
+                musicaAtual++;
+                TocarMusica();
             }
             else
             {
-                numero = 1;
-                musica();
+                musicaAtual = 1;
+                TocarMusica();
             }
         }
 
         //Botão que alterna entre pausar e tocar as Músics
         private void btPausarETocar_Click(object sender, RoutedEventArgs e)
         {
-            if (!ativo)
+            if (!tocandoMusica)
             {
-                ativo = true;
-                iconPausarETocar.Kind = PackIconKind.Pause;
-                if (numero == 0)
+                //Define a música padrão como a primeira música da lista
+                if (musicaAtual == 0)
                 {
-                    numero = 1;
-                    musica();
+                    musicaAtual = 1;
+                    TocarMusica();
                 }
+
+                //Configura o botão de Pausar e Tocar
+                tocandoMusica = true;
+                iconPausarETocar.Kind = PackIconKind.Pause;
+
                 player.Play();
             }
             else
             {
-                ativo = false;
-                player.Pause();
+                // Configura o botão de Pausar e Tocar
+                tocandoMusica = false;
                 iconPausarETocar.Kind = PackIconKind.Play;
+
+                player.Pause();
             }
         }
 
         //Botão que Toca a música 1
         private void musica1_Selected(object sender, RoutedEventArgs e)
         {
-            numero = 1;
-            ativo = true;
-            musica();
+            musicaAtual = 1;
+            TocarMusica();
         }
 
         //Botão que Toca a música 2
         private void musica2_Selected(object sender, RoutedEventArgs e)
         {
-            numero = 2;
-            ativo = true;
-            musica();
+            musicaAtual = 2;
+            TocarMusica();
         }
 
         //Botão que Toca a música 3
         private void musica3_Selected(object sender, RoutedEventArgs e)
         {
-            numero = 3;
-            ativo = true;
-            musica();
+            musicaAtual = 3;
+            TocarMusica();
         }
 
         //Botão que Toca a música 4
         private void musica4_Selected(object sender, RoutedEventArgs e)
         {
-            numero = 4;
-            ativo = true;
-            musica();
+            musicaAtual = 4;
+            TocarMusica();
         }
 
         //Botão que Toca a música 5
         private void musica5_Selected(object sender, RoutedEventArgs e)
         {
-            numero = 5;
-            ativo = true;
-            musica();
+            musicaAtual = 5;
+            TocarMusica();
         }
 
         //mover pela tela
@@ -160,42 +170,42 @@ namespace WpfMusicPlayers
 
         private void musica1_Loaded(object sender, RoutedEventArgs e)
         {
-            imMusica1.Source = new BitmapImage(new Uri(@"/Imagens/" + osts[0].icon, UriKind.Relative));
-            tbArtista1.Text = osts[0].artista;
-            tbMusica1.Text = osts[0].nome;
-            duracaoMusica1.Text = 0 + new Mp3FileReader(Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\..\")) + new Uri(@"musicas/" + osts[0].path, UriKind.Relative).ToString()).TotalTime.Minutes.ToString() + ":" + new Mp3FileReader(Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\..\")) + new Uri(@"musicas/" + osts[0].path, UriKind.Relative).ToString()).TotalTime.Seconds.ToString();
+            imMusica1.Source = new BitmapImage(new Uri(@"/Imagens/" + musicasList[0].imagem, UriKind.Relative));
+            tbArtista1.Text = musicasList[0].artista;
+            tbMusica1.Text = musicasList[0].nome;
+            duracaoMusica1.Text = 0 + new Mp3FileReader(Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\..\")) + new Uri(@"musicas/" + musicasList[0].caminho, UriKind.Relative).ToString()).TotalTime.Minutes.ToString() + ":" + new Mp3FileReader(Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\..\")) + new Uri(@"musicas/" + musicasList[0].caminho, UriKind.Relative).ToString()).TotalTime.Seconds.ToString();
         }
 
         private void musica2_Loaded(object sender, RoutedEventArgs e)
         {
-            imMusica2.Source = new BitmapImage(new Uri(@"/Imagens/" + osts[1].icon, UriKind.Relative));
-            tbArtista2.Text = osts[1].artista;
-            tbMusica2.Text = osts[1].nome;
-            duracaoMusica2.Text = 0 + new Mp3FileReader(Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\..\")) + new Uri(@"musicas/" + osts[1].path, UriKind.Relative).ToString()).TotalTime.Minutes.ToString() + ":" + new Mp3FileReader(Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\..\")) + new Uri(@"musicas/" + osts[1].path, UriKind.Relative).ToString()).TotalTime.Seconds.ToString();
+            imMusica2.Source = new BitmapImage(new Uri(@"/Imagens/" + musicasList[1].imagem, UriKind.Relative));
+            tbArtista2.Text = musicasList[1].artista;
+            tbMusica2.Text = musicasList[1].nome;
+            duracaoMusica2.Text = 0 + new Mp3FileReader(Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\..\")) + new Uri(@"musicas/" + musicasList[1].caminho, UriKind.Relative).ToString()).TotalTime.Minutes.ToString() + ":" + new Mp3FileReader(Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\..\")) + new Uri(@"musicas/" + musicasList[1].caminho, UriKind.Relative).ToString()).TotalTime.Seconds.ToString();
         }
 
         private void musica3_Loaded(object sender, RoutedEventArgs e)
         {
-            imMusica3.Source = new BitmapImage(new Uri(@"/Imagens/" + osts[2].icon, UriKind.Relative));
-            tbArtista3.Text = osts[2].artista;
-            tbMusica3.Text = osts[2].nome;
-            duracaoMusica3.Text = 0 + new Mp3FileReader(Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\..\")) + new Uri(@"musicas/" + osts[2].path, UriKind.Relative).ToString()).TotalTime.Minutes.ToString() + ":" + new Mp3FileReader(Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\..\")) + new Uri(@"musicas/" + osts[2].path, UriKind.Relative).ToString()).TotalTime.Seconds.ToString();
+            imMusica3.Source = new BitmapImage(new Uri(@"/Imagens/" + musicasList[2].imagem, UriKind.Relative));
+            tbArtista3.Text = musicasList[2].artista;
+            tbMusica3.Text = musicasList[2].nome;
+            duracaoMusica3.Text = 0 + new Mp3FileReader(Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\..\")) + new Uri(@"musicas/" + musicasList[2].caminho, UriKind.Relative).ToString()).TotalTime.Minutes.ToString() + ":" + new Mp3FileReader(Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\..\")) + new Uri(@"musicas/" + musicasList[2].caminho, UriKind.Relative).ToString()).TotalTime.Seconds.ToString();
         }
 
         private void musica4_Loaded(object sender, RoutedEventArgs e)
         {
-            imMusica4.Source = new BitmapImage(new Uri(@"/Imagens/" + osts[3].icon, UriKind.Relative));
-            tbArtista4.Text = osts[3].artista;
-            tbMusica4.Text = osts[3].nome;
-            duracaoMusica4.Text = 0 + new Mp3FileReader(Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\..\")) + new Uri(@"musicas/" + osts[3].path, UriKind.Relative).ToString()).TotalTime.Minutes.ToString() + ":" + new Mp3FileReader(Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\..\")) + new Uri(@"musicas/" + osts[3].path, UriKind.Relative).ToString()).TotalTime.Seconds.ToString();
+            imMusica4.Source = new BitmapImage(new Uri(@"/Imagens/" + musicasList[3].imagem, UriKind.Relative));
+            tbArtista4.Text = musicasList[3].artista;
+            tbMusica4.Text = musicasList[3].nome;
+            duracaoMusica4.Text = 0 + new Mp3FileReader(Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\..\")) + new Uri(@"musicas/" + musicasList[3].caminho, UriKind.Relative).ToString()).TotalTime.Minutes.ToString() + ":" + new Mp3FileReader(Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\..\")) + new Uri(@"musicas/" + musicasList[3].caminho, UriKind.Relative).ToString()).TotalTime.Seconds.ToString();
         }
 
         private void musica5_Loaded(object sender, RoutedEventArgs e)
         {
-            imMusica5.Source = new BitmapImage(new Uri(@"/Imagens/" + osts[4].icon, UriKind.Relative));
-            tbArtista5.Text = osts[4].artista;
-            tbMusica5.Text = osts[4].nome;
-            duracaoMusica5.Text = 0 + new Mp3FileReader(Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\..\")) + new Uri(@"musicas/" + osts[4].path, UriKind.Relative).ToString()).TotalTime.Minutes.ToString() + ":" + new Mp3FileReader(Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\..\")) + new Uri(@"musicas/" + osts[4].path, UriKind.Relative).ToString()).TotalTime.Seconds.ToString();
+            imMusica5.Source = new BitmapImage(new Uri(@"/Imagens/" + musicasList[4].imagem, UriKind.Relative));
+            tbArtista5.Text = musicasList[4].artista;
+            tbMusica5.Text = musicasList[4].nome;
+            duracaoMusica5.Text = 0 + new Mp3FileReader(Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\..\")) + new Uri(@"musicas/" + musicasList[4].caminho, UriKind.Relative).ToString()).TotalTime.Minutes.ToString() + ":" + new Mp3FileReader(Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\..\")) + new Uri(@"musicas/" + musicasList[4].caminho, UriKind.Relative).ToString()).TotalTime.Seconds.ToString();
         }
     }
 }

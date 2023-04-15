@@ -4,10 +4,10 @@ namespace WpfMusicPlayers.cs
 {
     internal class musica
     {
-        public string path { get; set; }
-        public string icon { get; set; }
+        public string caminho { get; set; }
+        public string imagem { get; set; }
         public string nome { get; set; }
         public string artista { get; set; }
-        public string tempo { get; set; }   
+        public string duracao { get; set; }   
     }
 }
