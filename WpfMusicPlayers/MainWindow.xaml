@@ -63,7 +63,7 @@
                 <Grid Width="250" Height="70" Background="#444444">
                     <TextBlock Text="01" Height="15" Width="15" Foreground="White" FontWeight="Bold" Margin="5" TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Left"/>
                     <Image x:Name="imMusica1" Width="50" Height="50" Margin="25, 0" HorizontalAlignment="Left" VerticalAlignment="Center" Source="imagens/teste.png"/>
-                    <TextBlock x:Name="tbMusica1" Text="Música 1" Foreground="White" HorizontalAlignment="Right" Margin="5, 15" VerticalAlignment="Top" Width="160" Height="20" FontWeight="Normal" FontSize="16"/>
+                    <TextBlock x:Name="tbMusica1" Text="Música 1" Foreground="White" HorizontalAlignment="Right" Margin="5, 15" VerticalAlignment="Top" Width="160" Height="25" FontWeight="Normal" FontSize="16"/>
                     <TextBlock x:Name="tbArtista1" Text="Artista 1" Foreground="White" HorizontalAlignment="Right" Margin="5, 10" VerticalAlignment="Bottom" Width="160" Height="20" FontWeight="Normal" FontSize="10"/>
                     <TextBlock x:Name="duracaoMusica1" Text="00:00" Height="15" Width="40" Foreground="White" Margin="0,33,5,0" TextAlignment="Center" VerticalAlignment="Top" HorizontalAlignment="Right"/>
                 </Grid>
@@ -74,7 +74,7 @@
                 <Grid Width="250" Height="70" Background="#444444">
                     <TextBlock Text="02" Height="15" Width="15" Foreground="White" FontWeight="Bold" Margin="5" TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Left"/>
                     <Image x:Name="imMusica2" Width="50" Height="50" Margin="25, 0" HorizontalAlignment="Left" VerticalAlignment="Center" Source="imagens/teste.png"/>
-                    <TextBlock x:Name="tbMusica2" Text="Música 2" Foreground="White" HorizontalAlignment="Right" Margin="5, 15" VerticalAlignment="Top" Width="160" Height="20" FontWeight="Normal" FontSize="16"/>
+                    <TextBlock x:Name="tbMusica2" Text="Música 2" Foreground="White" HorizontalAlignment="Right" Margin="5, 15" VerticalAlignment="Top" Width="160" Height="25" FontWeight="Normal" FontSize="16"/>
                     <TextBlock x:Name="tbArtista2" Text="Artista 2" Foreground="White" HorizontalAlignment="Right" Margin="5, 10" VerticalAlignment="Bottom" Width="160" Height="20" FontWeight="Normal" FontSize="10"/>
                     <TextBlock x:Name="duracaoMusica2" Text="00:00" Height="15" Width="40" Foreground="White" Margin="0,33,5,0" TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Right"/>
                 </Grid>
@@ -85,7 +85,7 @@
                 <Grid Width="250" Height="70" Background="#444444">
                     <TextBlock Text="03" Height="15" Width="15" Foreground="White" FontWeight="Bold" Margin="5" TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Left"/>
                     <Image x:Name="imMusica3" Width="50" Height="50" Margin="25, 0" HorizontalAlignment="Left" VerticalAlignment="Center" Source="imagens/teste.png"/>
-                    <TextBlock x:Name="tbMusica3" Text="Música 3" Foreground="White" HorizontalAlignment="Right" Margin="5, 15" VerticalAlignment="Top" Width="160" Height="20" FontWeight="Normal" FontSize="16"/>
+                    <TextBlock x:Name="tbMusica3" Text="Música 3" Foreground="White" HorizontalAlignment="Right" Margin="5, 15" VerticalAlignment="Top" Width="160" Height="25" FontWeight="Normal" FontSize="16"/>
                     <TextBlock x:Name="tbArtista3" Text="Artista 3" Foreground="White" HorizontalAlignment="Right" Margin="5, 10" VerticalAlignment="Bottom" Width="160" Height="20" FontWeight="Normal" FontSize="10"/>
                     <TextBlock x:Name="duracaoMusica3" Text="00:00" Height="15" Width="40" Foreground="White" Margin="0,33,5,0" TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Right"/>
                 </Grid>
@@ -96,7 +96,7 @@
                 <Grid Width="250" Height="70" Background="#444444">
                     <TextBlock Text="04" Height="15" Width="15" Foreground="White" FontWeight="Bold" Margin="5" TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Left"/>
                     <Image x:Name="imMusica4" Width="50" Height="50" Margin="25, 0" HorizontalAlignment="Left" VerticalAlignment="Center" Source="imagens/teste.png"/>
-                    <TextBlock x:Name="tbMusica4" Text="Música 4" Foreground="White" HorizontalAlignment="Right" Margin="5, 15" VerticalAlignment="Top" Width="160" Height="20" FontWeight="Normal" FontSize="16"/>
+                    <TextBlock x:Name="tbMusica4" Text="Música 4" Foreground="White" HorizontalAlignment="Right" Margin="5, 15" VerticalAlignment="Top" Width="160" Height="25" FontWeight="Normal" FontSize="16"/>
                     <TextBlock x:Name="tbArtista4" Text="Artista 4" Foreground="White" HorizontalAlignment="Right" Margin="5, 10" VerticalAlignment="Bottom" Width="160" Height="20" FontWeight="Normal" FontSize="10"/>
                     <TextBlock x:Name="duracaoMusica4" Text="00:00" Height="15" Width="40" Foreground="White" Margin="0,33,5,0" TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Right"/>
                 </Grid>
@@ -107,7 +107,7 @@
                 <Grid Width="250" Height="70" Background="#444444">
                     <TextBlock Text="05" Height="15" Width="15" Foreground="White" FontWeight="Bold" Margin="5" TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Left"/>
                     <Image x:Name="imMusica5" Width="50" Height="50" Margin="25, 0" HorizontalAlignment="Left" VerticalAlignment="Center" Source="imagens/teste.png"/>
-                    <TextBlock x:Name="tbMusica5" Text="Música 5" Foreground="White" HorizontalAlignment="Right" Margin="5, 15" VerticalAlignment="Top" Width="160" Height="20" FontWeight="Normal" FontSize="16"/>
+                    <TextBlock x:Name="tbMusica5" Text="Música 5" Foreground="White" HorizontalAlignment="Right" Margin="5, 15" VerticalAlignment="Top" Width="160" Height="25" FontWeight="Normal" FontSize="16"/>
                     <TextBlock x:Name="tbArtista5" Text="Artista 5" Foreground="White" HorizontalAlignment="Right" Margin="5, 10" VerticalAlignment="Bottom" Width="160" Height="20" FontWeight="Normal" FontSize="10"/>
                     <TextBlock x:Name="duracaoMusica5" Text="00:00" Height="15" Width="40" Foreground="White" Margin="0,33,5,0" TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Right"/>
                 </Grid>
